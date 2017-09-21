@@ -1,10 +1,14 @@
-
 import pyaudio
-import io
+import io, sys
 
 p = pyaudio.PyAudio()
 
-data_file = io.FileIO('./sound/quiet.pcm', mode='r')
+try:
+    filename=sys.argv[1]
+except:
+    print('ERROR: Usage - python playfile.py <filename> (e.g. python playfile.py voiceC')
+
+data_file = io.FileIO('./sound/{}.pcm'.format(filename), mode='r')
 
 FORMAT = p.get_format_from_width(width=2)
 CHANNELS = 1
